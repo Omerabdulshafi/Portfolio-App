@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+
+// Static data for Skills section
+const skillsData = [
+  // Programming Skills
+  { _id: '1', name: 'JavaScript', category: 'programming', level: 'Advanced' },
+  { _id: '2', name: 'React', category: 'programming', level: 'Advanced' },
+  { _id: '3', name: 'Node.js', category: 'programming', level: 'Advanced' },
+  { _id: '4', name: 'MongoDB', category: 'programming', level: 'Advanced' },
+  { _id: '5', name: 'HTML & CSS', category: 'programming', level: 'Advanced' },
+  { _id: '6', name: 'Tailwind CSS', category: 'programming', level: 'Advanced' },
+  { _id: '7', name: 'Express.js', category: 'programming', level: 'Intermediate' },
+  { _id: '8', name: 'REST APIs', category: 'programming', level: 'Advanced' },
+  { _id: '9', name: 'Python', category: 'programming', level: 'Intermediate' },
+  { _id: '10', name: 'Git & GitHub', category: 'programming', level: 'Advanced' },
+  
+  // Health Skills
+  { _id: '11', name: 'Health Informatics', category: 'health', level: 'Advanced' },
+  { _id: '12', name: 'Data Analysis', category: 'health', level: 'Intermediate' },
+  { _id: '13', name: 'Healthcare Systems', category: 'health', level: 'Intermediate' },
+  { _id: '14', name: 'Public Health', category: 'health', level: 'Advanced' },
+  { _id: '15', name: 'EHR Systems', category: 'health', level: 'Beginner' },
+  { _id: '16', name: 'Medical Coding', category: 'health', level: 'Beginner' },
+];
 
 const Skills = () => {
-  const [skills, setSkills] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchSkills = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get('/api/skills');
-        setSkills(response.data);
-      } catch (err) {
-        setError('Failed to load skills');
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSkills();
-  }, []);
-
-  if (loading) return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
-  if (error) return <div className="flex items-center justify-center min-h-screen text-red-500">{error}</div>;
+  const skills = skillsData;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 to-black text-white py-20">

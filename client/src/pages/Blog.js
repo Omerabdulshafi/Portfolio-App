@@ -1,56 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+
+// Static data for Blog section
+const blogsData = [
+  {
+    _id: '1',
+    title: 'Getting Started with MERN Stack',
+    content: 'Learn how to build modern web applications using MongoDB, Express, React, and Node.js. This comprehensive guide covers setup, architecture, and best practices.',
+    coverImage: '/weddev.png',
+    tags: ['javascript', 'react', 'tutorial'],
+    createdAt: new Date('2024-01-15')
+  },
+  {
+    _id: '2',
+    title: 'Health Tech Innovations in 2024',
+    content: 'Exploring the latest innovations in healthcare technology and how they are transforming patient care. From telemedicine to AI-powered diagnostics.',
+    coverImage: '/health-and-wellness.jpg',
+    tags: ['health', 'tech', 'innovation'],
+    createdAt: new Date('2024-02-10')
+  },
+  {
+    _id: '3',
+    title: 'Building Secure Web Applications',
+    content: 'Security is paramount in web development. Learn about authentication, authorization, data encryption, and other essential security practices.',
+    coverImage: '/Health-Tech.jpg',
+    tags: ['web', 'security', 'tutorial'],
+    createdAt: new Date('2024-01-28')
+  },
+
+  
+];
 
 const Blog = () => {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  // Map tags to default images
-  const getTagImage = (tags) => {
-    const tagImages = {
-      'javascript': '/healthcare.png',
-      'react': '/biomrtric.png',
-      'web': '/healthcare.png',
-      'design': '/biomrtric.png',
-      'tutorial': '/profile.png',
-      'tech': '/healthcare.png',
-    };
-    
-    if (tags && tags.length > 0) {
-      const tag = tags[0].toLowerCase();
-    
-    }
-  
-  };
-
-  // Fallback images for more variation
-  const fallbackImages = [
-    '/weddev.png',
-    '/health-and-wellness.jpg',
-    '/Health-Tech.jpg',
-  ];
-
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get('/api/blogs');
-        setBlogs(response.data);
-      } catch (err) {
-        setError('Failed to load blogs');
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBlogs();
-  }, []);
-
-  if (loading) return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
-  if (error) return <div className="flex items-center justify-center min-h-screen text-red-500">{error}</div>;
+  const blogs = blogsData;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 to-black text-white py-20">

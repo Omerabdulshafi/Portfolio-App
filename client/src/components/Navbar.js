@@ -50,8 +50,8 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Link to="/login" className="hover:text-primary">Login</Link>
-                <Link to="/register" className="btn-primary">
+                <Link to="/login" className="hover:text-primary hidden">Login</Link>
+                <Link to="/register" className="btn-primary hidden">
                   Register
                 </Link>
               </>
