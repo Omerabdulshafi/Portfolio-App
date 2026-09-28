@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../api';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
@@ -22,7 +22,7 @@ const AdminMessages = () => {
   const fetchMessages = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/contact', {
+      const response = await axios.get('/api/contact', {
         headers: getHeaders()
       });
       setMessages(response.data);
@@ -38,7 +38,7 @@ const AdminMessages = () => {
     if (window.confirm('Are you sure you want to delete this message?')) {
       try {
         await axios.delete(
-          `http://localhost:5000/api/contact/${id}`,
+          `/api/contact/${id}`,
           { headers: getHeaders() }
         );
         toast.success('Message deleted successfully!');

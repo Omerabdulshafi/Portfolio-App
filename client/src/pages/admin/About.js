@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../api';
 import toast from 'react-hot-toast';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -28,7 +28,7 @@ const AdminAbout = () => {
   const fetchAbout = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/about');
+      const response = await axios.get('/api/about');
       setAbout(response.data);
       setFormData({
         bio: response.data.bio || '',
@@ -53,7 +53,7 @@ const AdminAbout = () => {
       };
       
       await axios.put(
-        'http://localhost:5000/api/about',
+        '/api/about',
         submitData,
         { headers: getHeaders() }
       );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../api';
 import { FaCode, FaHeartbeat, FaLaptopCode } from 'react-icons/fa';
 import { useTheme } from '../context/ThemeContext';
 import TypeWriter from '../components/TypeWriter';
@@ -13,8 +13,8 @@ const Home = () => {
     const fetchStats = async () => {
       try {
         const [skillsRes, projectsRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/skills'),
-          axios.get('http://localhost:5000/api/projects')
+          axios.get('/api/skills'),
+          axios.get('/api/projects')
         ]);
         setStats({
           skills: skillsRes.data.length,

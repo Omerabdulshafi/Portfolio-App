@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../api';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
 import { FaUsers, FaCode, FaProjectDiagram, FaBlog, FaEnvelope, FaUser } from 'react-icons/fa';
@@ -20,7 +20,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/admin/stats', {
+        const res = await axios.get('/api/admin/stats', {
           headers: { 'x-auth-token': token }
         });
         setStats(res.data);

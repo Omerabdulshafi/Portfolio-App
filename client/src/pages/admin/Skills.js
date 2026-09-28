@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../api';
 import toast from 'react-hot-toast';
 import { FaTrash, FaEdit, FaPlus } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
@@ -29,7 +29,7 @@ const AdminSkills = () => {
   const fetchSkills = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/skills');
+      const response = await axios.get('/api/skills');
       setSkills(response.data);
     } catch (error) {
       console.error('Error fetching skills:', error);
@@ -50,7 +50,7 @@ const AdminSkills = () => {
       if (editingId) {
         // Update skill
         await axios.put(
-          `http://localhost:5000/api/skills/${editingId}`,
+          `/api/skills/${editingId}`,
           formData,
           { headers: getHeaders() }
         );
@@ -58,7 +58,7 @@ const AdminSkills = () => {
       } else {
         // Create new skill
         await axios.post(
-          'http://localhost:5000/api/skills',
+          '/api/skills',
           formData,
           { headers: getHeaders() }
         );
@@ -88,7 +88,7 @@ const AdminSkills = () => {
     if (window.confirm('Are you sure you want to delete this skill?')) {
       try {
         await axios.delete(
-          `http://localhost:5000/api/skills/${id}`,
+          `/api/skills/${id}`,
           { headers: getHeaders() }
         );
         toast.success('Skill deleted successfully!');

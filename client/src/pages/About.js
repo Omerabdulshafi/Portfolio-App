@@ -21,13 +21,13 @@ const aboutData = {
     {
       title: "Full Stack Developer",
       company: "Tech Solutions Co.",
-      period: "2023 - Present",
+      period: "2025 - Present",
       description: "Developing web applications using React, Node.js, and MongoDB. Working on healthcare management systems."
     },
     {
       title: "Junior Web Developer",
       company: "Digital Agency",
-      period: "2022 - 2023",
+      period: "2025 - 2026",
       description: "Built responsive websites and web applications for various clients using React and vanilla JavaScript."
     },
     {

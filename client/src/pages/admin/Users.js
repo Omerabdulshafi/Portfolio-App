@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../api';
 import toast from 'react-hot-toast';
 import { FaTrash } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
@@ -22,7 +22,7 @@ const AdminUsers = () => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/users', {
+      const response = await axios.get('/api/users', {
         headers: getHeaders()
       });
       setUsers(response.data);
@@ -38,7 +38,7 @@ const AdminUsers = () => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
         await axios.delete(
-          `http://localhost:5000/api/users/${id}`,
+          `/api/users/${id}`,
           { headers: getHeaders() }
         );
         toast.success('User deleted successfully!');
@@ -53,7 +53,7 @@ const AdminUsers = () => {
   const handleRoleChange = async (id, newRole) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/users/${id}`,
+        `/api/users/${id}`,
         { role: newRole },
         { headers: getHeaders() }
       );

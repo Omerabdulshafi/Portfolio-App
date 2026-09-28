@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../api';
 import toast from 'react-hot-toast';
 import { FaTrash, FaEdit, FaPlus } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
@@ -31,7 +31,7 @@ const AdminProjects = () => {
   const fetchProjects = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/projects');
+      const response = await axios.get('/api/projects');
       setProjects(response.data);
     } catch (error) {
       console.error('Error fetching projects:', error);
@@ -57,7 +57,7 @@ const AdminProjects = () => {
       if (editingId) {
         // Update project
         await axios.put(
-          `http://localhost:5000/api/projects/${editingId}`,
+          `/api/projects/${editingId}`,
           projectData,
           { headers: getHeaders() }
         );
@@ -65,7 +65,7 @@ const AdminProjects = () => {
       } else {
         // Create new project
         await axios.post(
-          'http://localhost:5000/api/projects',
+          '/api/projects',
           projectData,
           { headers: getHeaders() }
         );
@@ -95,7 +95,7 @@ const AdminProjects = () => {
     if (window.confirm('Are you sure you want to delete this project?')) {
       try {
         await axios.delete(
-          `http://localhost:5000/api/projects/${id}`,
+          `/api/projects/${id}`,
           { headers: getHeaders() }
         );
         toast.success('Project deleted successfully!');

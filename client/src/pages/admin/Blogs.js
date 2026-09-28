@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../api';
 import toast from 'react-hot-toast';
 import { FaTrash, FaEdit, FaPlus } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
@@ -29,7 +29,7 @@ const AdminBlogs = () => {
   const fetchBlogs = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/blogs');
+      const response = await axios.get('/api/blogs');
       setBlogs(response.data);
     } catch (error) {
       console.error('Error fetching blogs:', error);
@@ -50,7 +50,7 @@ const AdminBlogs = () => {
       if (editingId) {
         // Update blog
         await axios.put(
-          `http://localhost:5000/api/blogs/${editingId}`,
+          `/api/blogs/${editingId}`,
           formData,
           { headers: getHeaders() }
         );
@@ -58,7 +58,7 @@ const AdminBlogs = () => {
       } else {
         // Create new blog
         await axios.post(
-          'http://localhost:5000/api/blogs',
+          '/api/blogs',
           formData,
           { headers: getHeaders() }
         );
@@ -86,7 +86,7 @@ const AdminBlogs = () => {
     if (window.confirm('Are you sure you want to delete this blog?')) {
       try {
         await axios.delete(
-          `http://localhost:5000/api/blogs/${id}`,
+          `/api/blogs/${id}`,
           { headers: getHeaders() }
         );
         toast.success('Blog deleted successfully!');
