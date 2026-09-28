@@ -19,8 +19,13 @@ if (missingEnvs.length > 0) {
 const app = express();
 
 // Middleware
+const frontendOrigins = (process.env.FRONTEND_URL || '')
+  .split(',')
+  .map(origin => origin.trim())
+  .filter(Boolean);
+
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:5173'],
+  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:5173', ...frontendOrigins],
   credentials: true
 }));
 app.use(express.json());

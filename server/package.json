@@ -2,6 +2,9 @@
   "name": "portfolio-backend",
   "version": "1.0.0",
   "description": "Portfolio Backend with MongoDB",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
