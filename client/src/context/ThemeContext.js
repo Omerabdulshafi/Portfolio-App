@@ -1,6 +1,8 @@
 import React, { createContext, useState, useEffect } from 'react';
 
 export const ThemeContext = createContext();
+const THEME_STORAGE_KEY = 'appTheme.v2';
+const LEGACY_THEME_STORAGE_KEY = 'appTheme';
 
 const colorValues = {
   blue: { r: '59', g: '130', b: '246' },
@@ -34,18 +36,23 @@ export const ThemeProvider = ({ children }) => {
     accentColor: 'purple',
     fontFamily: 'sans',
     fontSize: 'base',
-    darkMode: false
+    darkMode: true
   });
 
   // Load theme from localStorage on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem('appTheme');
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
     if (savedTheme) {
       const parsedTheme = JSON.parse(savedTheme);
       setTheme(parsedTheme);
       applyThemeStyles(parsedTheme);
     } else {
-      applyThemeStyles(theme);
+      const legacyTheme = localStorage.getItem(LEGACY_THEME_STORAGE_KEY);
+      const initialTheme = legacyTheme
+        ? { ...theme, ...JSON.parse(legacyTheme), darkMode: true }
+        : theme;
+      setTheme(initialTheme);
+      applyThemeStyles(initialTheme);
     }
   }, []);
 
@@ -72,7 +79,7 @@ export const ThemeProvider = ({ children }) => {
 
   // Save theme to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('appTheme', JSON.stringify(theme));
+    localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(theme));
     applyThemeStyles(theme);
   }, [theme]);
 
@@ -87,7 +94,7 @@ export const ThemeProvider = ({ children }) => {
       accentColor: 'purple',
       fontFamily: 'sans',
       fontSize: 'base',
-      darkMode: false
+      darkMode: true
     };
     setTheme(defaultTheme);
   };
