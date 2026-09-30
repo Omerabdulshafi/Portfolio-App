@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 // Static data for Projects section
 const projectsData = [
   {
-    _id: 'https://deploy-preview-77--charming-empanada-5dbb51.netlify.app/',
+    _id: 'https://mahama-care-hospital.vercel.app/',
     title: 'Healthcare Management System',
     description: 'A comprehensive web application for managing patient records, appointments, and medical history.',
     category: 'healthcare',
@@ -12,7 +11,7 @@ const projectsData = [
     technologies: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS']
   },
   {
-    _id: '2',
+    _id: 'http://10.70.162.72:3001/',
     title: 'Biometric Authentication App',
     description: 'Secure biometric-based authentication system for healthcare facilities.',
     category: 'biometric',
@@ -20,7 +19,7 @@ const projectsData = [
     technologies: ['React', 'Express.js', 'MongoDB', 'Security']
   },
   {
-    _id: '3',
+    _id: 'https://venerable-clafoutis-230d2f.netlify.app/',
     title: 'Personal Portfolio Website',
     description: 'Interactive portfolio website showcasing projects and skills with dark mode support.',
     category: 'portfolio',
@@ -28,7 +27,7 @@ const projectsData = [
     technologies: ['React', 'Tailwind CSS', 'Node.js']
   },
   {
-    _id: 'https://omerabdulshafi.github.io/BIM-Calculator/',
+    _id: 'https://meek-maamoul-5167ea.netlify.app/',
     title: 'BIM Data Management Platform',
     description: 'Building Information Modeling platform for managing construction projects and data.',
     category: 'web',
@@ -51,9 +50,11 @@ const Projects = () => {
             <p className="col-span-3 text-gray-400">No projects available</p>
           ) : (
             projects.map((project, index) => (
-              <Link
+              <a
                 key={project._id}
-                to={`/projects/${project._id}`}
+                href={project._id}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gray-800 rounded-lg overflow-hidden hover:transform hover:scale-105 transition"
               >
                 <div 
@@ -80,7 +81,7 @@ const Projects = () => {
                     ))}
                   </div>
                 </div>
-              </Link>
+              </a>
             ))
           )}
         </div>

@@ -1,38 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-// Static data for Blog section
-const blogsData = [
-  {
-    _id: '1',
-    title: 'Getting Started with MERN Stack',
-    content: 'Learn how to build modern web applications using MongoDB, Express, React, and Node.js. This comprehensive guide covers setup, architecture, and best practices.',
-    coverImage: '/weddev.png',
-    tags: ['javascript', 'react', 'tutorial'],
-    createdAt: new Date('2024-01-15')
-  },
-  {
-    _id: '2',
-    title: 'Health Tech Innovations in 2024',
-    content: 'Exploring the latest innovations in healthcare technology and how they are transforming patient care. From telemedicine to AI-powered diagnostics.',
-    coverImage: '/health-and-wellness.jpg',
-    tags: ['health', 'tech', 'innovation'],
-    createdAt: new Date('2024-02-10')
-  },
-  {
-    _id: '3',
-    title: 'Building Secure Web Applications',
-    content: 'Security is paramount in web development. Learn about authentication, authorization, data encryption, and other essential security practices.',
-    coverImage: '/Health-Tech.jpg',
-    tags: ['web', 'security', 'tutorial'],
-    createdAt: new Date('2024-01-28')
-  },
-
-  
-];
+import legacyBlogs from '../data/blogs';
 
 const Blog = () => {
-  const blogs = blogsData;
+  const blogs = legacyBlogs;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 to-black text-white py-20">
@@ -64,9 +35,6 @@ const Blog = () => {
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="text-gray-400 text-sm mb-4">
-                    {new Date(blog.createdAt).toLocaleDateString()}
-                  </p>
                   <p className="text-gray-300 mb-4 line-clamp-2">{blog.content}</p>
                   <div className="flex flex-wrap gap-2">
                     {blog.tags?.slice(0, 3).map((tag, idx) => (

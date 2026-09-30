@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from '../api';
 import ReactMarkdown from 'react-markdown';
+import legacyBlogs from '../data/blogs';
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -11,6 +12,13 @@ const BlogPost = () => {
 
   useEffect(() => {
     const fetchBlog = async () => {
+      const localBlog = legacyBlogs.find(blog => blog._id === id);
+      if (localBlog) {
+        setBlog(localBlog);
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
         const response = await axios.get(`/api/blogs/${id}`);
@@ -41,9 +49,6 @@ const BlogPost = () => {
         
         <article>
           <h1 className="text-5xl font-bold mb-4">{blog.title}</h1>
-          <p className="text-gray-400 mb-8">
-            Published on {new Date(blog.createdAt).toLocaleDateString()}
-          </p>
           
           <div className="prose prose-invert max-w-none">
             <ReactMarkdown>{blog.content}</ReactMarkdown>
